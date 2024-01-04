@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import {LeadingCharacterDirective} from "./leading-character.directive";
 import {RxUnpatch} from "@rx-angular/template/unpatch";
+import {RxFormControlDirective} from "./rx-form-control.directive";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, LeadingCharacterDirective, RxUnpatch],
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, LeadingCharacterDirective, RxUnpatch, RxFormControlDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

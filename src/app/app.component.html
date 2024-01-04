@@ -97,4 +97,25 @@
     </div>
   </div>
 
+  <div>
+    <h4>With unpatch and rx-form-control directive</h4>
+    <p>Do whatever you like, these behave like regular form controls without triggering change detection</p>
+    <div class="form-group">
+      <label>Contract number</label>
+      <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch] rx-form-control
+             leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
+        <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch] rx-form-control
+             leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
+        <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
+      </div>
+    </div>
+  </div>
+
 </form>
