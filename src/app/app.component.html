@@ -81,7 +81,7 @@
     <p>Type in any of the input elements and watch the valueChanges subscription receiving values.</p>
     <div class="form-group">
       <label>Contract number</label>
-      <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+      <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch]="allEventsExceptInput"
              leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
       <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
         <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
@@ -89,7 +89,7 @@
     </div>
     <div class="form-group">
       <label>Phone number</label>
-      <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+      <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch]="allEventsExceptInput"
              leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
       <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
         <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
