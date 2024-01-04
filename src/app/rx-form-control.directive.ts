@@ -13,7 +13,7 @@ export class RxFormControlDirective {
 
   @HostListener('input') public input() {
     if(this.control && this.wasValid !== this.control.valid){
-      this.wasValid = !!this.wasValid;
+      this.wasValid = this.control.valid;
       this.cdRef.detectChanges();
     }
   }
