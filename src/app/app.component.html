@@ -7,32 +7,93 @@
   <div>
     <h4>Without unpatch</h4>
     <p>Hover any of the input elements and watch CD log entries increase.</p>
+    <p>Focus any of the input elements and leave focus and watch the required error appear, provide a value and the error disappears.</p>
     <p>Type in any of the input elements and watch the valueChanges subscription receiving values.</p>
     <div class="form-group">
       <label>Contract number</label>
       <input type="text" formControlName="contractNumber" placeholder="Hover me!"
              leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
+        <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
+      </div>
     </div>
     <div class="form-group">
       <label>Phone number</label>
       <input type="text" formControlName="phoneNumber"    placeholder="Hover me!"
              leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
+        <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
+      </div>
     </div>
   </div>
 
   <div>
     <h4>With unpatch</h4>
     <p>Hover any of the input elements, this should not cause a CD entry in the log.</p>
+    <p>Focus any of the input elements and leave focus and the required error does NOT appear until next CD cycle runs. Also in reverse, the error does not dissappear once a value has been provided until next CD cycle.</p>
     <p>Type in any of the input elements and watch the valueChanges subscription receiving values.</p>
     <div class="form-group">
       <label>Contract number</label>
       <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch]
              leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
+        <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
+      </div>
     </div>
     <div class="form-group">
       <label>Phone number</label>
       <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch]
              leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
+        <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h4>With unpatch all except blur</h4>
+    <p>Hover any of the input elements, this should not cause a CD entry in the log.</p>
+    <p>Focus any of the input elements and leave focus and watch the required error appear, provide a value and the error disappears once you have left focus again, this does run one CD cycle.</p>
+    <p>You could opt in to also not unpatch the input event, this would result in immediate feedback but would run a CD cycle for each letter typed by the user.</p>
+    <p>Type in any of the input elements and watch the valueChanges subscription receiving values.</p>
+    <div class="form-group">
+      <label>Contract number</label>
+      <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+             leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
+        <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+             leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
+        <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h4>With unpatch all except input</h4>
+    <p>Hover any of the input elements, this should not cause a CD entry in the log.</p>
+    <p>You could opt in to also only not unpatch the input event, this would result in immediate feedback but would run a CD cycle for each letter typed by the user.</p>
+    <p>Type in any of the input elements and watch the valueChanges subscription receiving values.</p>
+    <div class="form-group">
+      <label>Contract number</label>
+      <input type="text" formControlName="contractNumber" placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+             leadingCharacter [control]="form.controls.contractNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.contractNumber.touched||form.controls.contractNumber.dirty) && form.controls.contractNumber.invalid">
+        <span *ngIf="form.controls.contractNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Contract number.</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="text" formControlName="phoneNumber"    placeholder="Hover me!" [unpatch]="allEventsExceptBlur"
+             leadingCharacter [control]="form.controls.phoneNumber" [leadingLength]="10" [leadingCharacter]="'0'" />
+      <div class="errorMessageColor" *ngIf="(form.controls.phoneNumber.touched||form.controls.phoneNumber.dirty) && form.controls.phoneNumber.invalid">
+        <span *ngIf="form.controls.phoneNumber.errors?.['required']" class="errorMessageColor">Please provide a value for Phone number.</span>
+      </div>
     </div>
   </div>
 

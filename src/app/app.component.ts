@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import {LeadingCharacterDirective} from "./leading-character.directive";
 import {RxUnpatch} from "@rx-angular/template/unpatch";
 
@@ -14,9 +14,37 @@ import {RxUnpatch} from "@rx-angular/template/unpatch";
 })
 export class AppComponent {
 
+  allEvents = [
+    'scroll',
+    'mousedown',
+    'mouseenter',
+    'mouseleave',
+    'mousemove',
+    'mouseout',
+    'mouseover',
+    'mouseup',
+    'load',
+    'pointerup',
+    'change',
+    'blur',
+    'focus',
+    'click',
+    'contextmenu',
+    'drag',
+    'dragend',
+    'dragenter',
+    'dragleave',
+    'dragover',
+    'dragstart',
+    'drop',
+    'input',
+  ]
+  allEventsExceptBlur =  this.allEvents.filter(e => e !== 'blur');
+  allEventsExceptInput =  this.allEvents.filter(e => e !== 'input');
+
   form = new FormGroup({
-    contractNumber: new FormControl(''),
-    phoneNumber:    new FormControl(''),
+    contractNumber: new FormControl('', [Validators.required]),
+    phoneNumber:    new FormControl('', [Validators.required]),
   });
 
   constructor() {
